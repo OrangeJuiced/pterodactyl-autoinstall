@@ -98,8 +98,8 @@ function panel_downloading {
   mkdir -p /var/www/html/pterodactyl
   cd /var/www/html/pterodactyl
 
-  curl -Lo v0.6.4.tar.gz https://github.com/Pterodactyl/Panel/archive/v0.6.4.tar.gz
-  tar --strip-components=1 -xzvf v0.6.4.tar.gz
+  curl -Lo v0.6.4.tar.gz https://github.com/pterodactyl/panel/releases/download/v0.7.10/panel.tar.gz
+  tar --strip-components=1 -xzvf v0.7.10.tar.gz
 
   chmod -R 755 storage/* bootstrap/cache
 }
@@ -224,8 +224,8 @@ function daemon_install {
   output "Installing the daemon"
   mkdir -p /srv/daemon /srv/daemon-data
   cd /srv/daemon
-  curl -Lo v0.4.3.tar.gz https://github.com/Pterodactyl/Daemon/archive/v0.4.3.tar.gz
-  tar --strip-components=1 -xzvf v0.4.3.tar.gz
+  curl -Lo v0.4.3.tar.gz https://github.com/pterodactyl/daemon/releases/download/v0.6.7/daemon.tar.gz
+  tar --strip-components=1 -xzvf v0.6.7.tar.gz
   npm install --only=production
 
   echo -e "[Unit]\nDescription=Pterodactyl Wings Daemon\nAfter=docker.service\n\n[Service]\nUser=root\n#Group=some_group\nWorkingDirectory=/srv/daemon\nLimitNOFILE=4096\nPIDFile=/var/run/wings/daemon.pid\nExecStart=/usr/bin/node /srv/daemon/src/index.js\nRestart=on-failure\nStartLimitInterval=600\n\n[Install]\nWantedBy=multi-user.target" > /etc/systemd/system/wings.service
